@@ -1,10 +1,6 @@
 
 <div class="col-md-3">
  
- <div>
-  <%= flash[:notice] %>
-</div>
-
 <h2>User info</h2>
   <%= image_tag user.get_profile_image(100,100) %>
   <table class="table">
@@ -23,10 +19,8 @@
    </table>
    
    <div class="row">
-    <% if @user == current_user %>
-     <%= link_to edit_user_path(current_user.id), class: "btn btn-outline-secondary btn-block edit_user", method: :get do %></td>
-     <i class="fas fa-user-cog"></i> 
-     <% end %>
+     <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block edit_user", method: :get do %></td>
+     <i class="fas fa-user-cog"></i>
     <% end %>
     </div>
 
@@ -41,7 +35,7 @@
   </ul>
 <% end %>
 
-<%= form_with model: book do |f| %>
+<%= form_with model: Book.new do |f| %>
  <div class="form-group"">
   <%= f.label :Title %><br>
   <%= f.text_field :title, class:"form-control text" %>

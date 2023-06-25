@@ -1,23 +1,21 @@
 
-<%= render 'list', book: @newbook, user: @user %>
+<%= render 'list', book: @book, user: @user %>
 
 <div class="col-md-8 offset-md-1">
 <h2>Book detail</h2>
 
 <table class="table">
  <tbody>
-   <% @book.each do |book| %>
     <tr>
-    <td><%= image_tag book.user.get_profile_image(100,100) %><br>
-    <%= link_to book.user.name, user_path %></td>
-    <td><%= link_to book.title, book_path %></td>
-    <td><%= book.body %></td>
-    <% if book.user == current_user %>
-    <td><%= link_to "Edit", edit_book_path(book.id), class:"btn btn-secondary bg-success" %></td>
-    <td><%= link_to "Destroy", book_path(book.id), class:"btn btn-secondary bg-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+    <td><%= image_tag @book.user.get_profile_image(100,100) %><br>
+    <%= link_to @book.user.name, user_path(@book.user.id) %></td>
+    <td><%= link_to @book.title, book_path %></td>
+    <td><%= @book.body %></td>
+    <% if @book.user == current_user %>
+    <td><%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-secondary bg-success" %></td>
+    <td><%= link_to "Destroy", book_path(@book.id), class:"btn btn-secondary bg-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
     <% end %>
    </tr>
-   <% end %>
  </tbody>
 </table>
 </div>
